@@ -1,0 +1,122 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: modalFadeIn 0.25s ease;
+}
+
+.modal-backdrop--primary {
+  background: rgba(47, 107, 58, 0.45);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-dialog {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 640px;
+  padding: 2.25rem 2rem 2rem;
+  max-height: min(86vh, 760px);
+  overflow-y: auto;
+  animation: modalSlideUp 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-dialog--md { max-width: 640px; }
+.modal-dialog--sm { max-width: 480px; }
+.modal-dialog--lg { max-width: 780px; }
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.modal-close:hover {
+  background: var(--border-soft);
+  color: var(--text);
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 2.25rem 1.25rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.modal-body {
+  color: var(--text-soft);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.modal-body p {
+  margin-bottom: 1rem;
+  color: var(--text-soft);
+}
+
+.modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .modal-backdrop {
+    padding: 0.85rem;
+  }
+
+  .modal-dialog {
+    padding: 1.85rem 1.35rem 1.5rem;
+    border-radius: var(--radius-md);
+    max-height: 90vh;
+  }
+
+  .modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-backdrop,
+  .modal-dialog {
+    animation: none !important;
+  }
+}
